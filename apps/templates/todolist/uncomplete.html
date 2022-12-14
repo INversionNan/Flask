@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>
+        Uncompleted List
+    </title>
+    <!-- Favicons -->
+    <link href="../../static/img/favicon2.jpg" rel="icon" alt="title">
+    <link href="../../static/img/favicon2.jpg" rel="apple-touch-icon" alt="title">
+
+    <!-- 谷歌字体导入 -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="../../static/codebase/aos/aos.css" rel="stylesheet">
+    <link href="../../static/codebase/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!--
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css"rel="stylesheet" >
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap-grid.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">-->
+
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="../../static/codebase/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="../../static/codebase/remixicon/remixicon.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="../../static/codebase/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="../../static/codebase/boxicons/css/boxicons.min.css" rel="stylesheet">
+
+    <link href="../../static/css/style_1.css" rel="stylesheet">
+
+</head>
+<body class="body">
+    <header id="header" class="fixed-top">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{{ url_for('base.index') }}">TodoList</a>
+        </div>
+        <div class="container d-flex align-items-center justify-content-lg-between block" data-move-y="200px" data-move-x="-200px">
+          <a href="https://www.todolist.cn" class="logo me-auto me-lg-0"><img src="../../static/img/index.jpg" alt="todo" class="logo_1 img-fluid"></a>
+          <nav id="navbar" class="navbar order-last order-lg-0">
+            <ul>
+              <li><a class="nav-link scrollto active" href="#hero2">Add List</a></li>
+              <li><a class="nav-link scrollto" href="#about">Show to-do list</a></li>
+                <li><a href="{{ url_for('base.register') }}">Register</a></li>
+                <li class="dropdown"><a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">View By Status</a><span class="caret"></span>
+                  <ul class="dropdown-menu">
+                      <li><a href="{{ url_for('todolist.complete', id=current_user.id) }}">Completed List</a></li>
+                      <li><a href="{{ url_for('todolist.uncomplete', id=current_user.id) }}">Uncompleted List</a></li>
+                  </ul>
+                </li>
+                    {% if current_user.is_authenticated %}
+
+                        <li><a href="{{ url_for('todolist.list_1') }}">{{ current_user.username }}</a></li>
+
+              <li class="dropdown"><a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Personal Center</a><span class="caret"></span>
+                  <ul class="dropdown-menu">
+                            <li><a href="{{ url_for('user.get_user', id=current_user.id) }}">Personal Information</a></li>
+                            <li><a href="{{ url_for('user.change_user') }}">Edit</a></li>
+                            <li><a href="{{ url_for('user.change_password', id=current_user.id) }}">Change Password</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="{{ url_for('base.logout') }}">Logout</a></li>
+                        </ul>
+              </li>
+                {% endif %}
+{#              <li><a class="nav-link scrollto " href="#portfolio"></a></li>#}
+{#              <li><a class="nav-link scrollto" href="#team">主角</a></li>#}
+              <li><a class="nav-link scrollto" href="{{ url_for('todolist.category') }}">Add Categories</a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+          </nav>
+          <a href="#about" class="get-started-btn scrollto">Drop down</a>
+        </div>
+    </header>
+    <section id="about" class="about">
+
+      <div class="container block" data-aos="fade-up" data-move-y="200px" data-move-x="-200px">
+      <div class="section-title">
+          <h21>Uncompleted To-do List</h21>
+      </div>
+            <table class="table table-striped">
+                <tr>
+                    <td>ID</td>
+                    <td>Module Title</td>
+                    <td>Assessment Title</td>
+                    <td>Task Content</td>
+                    <td>Deadline</td>
+                    <td>Category</td>
+                    <td>Priority</td>
+                    <td>Status</td>
+                    <td>Operation</td>
+                </tr>
+
+                {% for todo in todoObj.items %}
+                    {% if todo.task_status == False%}
+                    <tr>
+                        <td>{{ todo.id }}</td>
+                        <td>{{ todo.task_moduleTitle }}</td>
+                        <td>{{ todo.task_assessmentTitle}}</td>
+                        <td>{{ todo.task_content }}</td>
+                        <td>{{ todo.task_deadline }}</td>
+                        <td>
+                            <a href="#" class="btn btn-success btn-xs" role="button">{{ todo.kind.name }}</a>
+                        </td>
+                        <td>
+                            {% if todo.task_urgent == 2 %}
+                                <a href="{{ url_for('todolist.urgent', id=todo.id) }}" class="btn noturgent btn-xs"
+                                   role="button">Inconsequential</a>
+                            {% else %}
+                                <a href="{{ url_for('todolist.noturgent', id=todo.id) }}" class="btn urgent btn-xs"
+                                   role="button">Urgent</a>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if todo.task_status %}
+
+                                <a href="{{ url_for('todolist.hasnotdone', id=todo.id) }}" class="btn complete btn-xs"
+                                   role="button">Completed</a>
+
+                            {% else %}
+                                <a href="{{ url_for('todolist.hasdone', id=todo.id) }}" class="btn uncomplete btn-xs"
+                                   role="button">Uncompleted</a>
+                            {% endif %}
+
+                        </td>
+                        <td>
+                            <a href="{{ url_for('todolist.change', id=todo.id) }}" class="btn btn-success btn-xs change"
+                               role="button">Change</a>
+                            <a href="{{ url_for('todolist.search', id=todo.id) }}" class="btn btn-danger btn-xs search"
+                               role="button">Search</a>
+                            <a href="{{ url_for('todolist.delete', id=todo.id) }}" class="btn btn-danger btn-xs delete"
+                               role="button">Delete</a>
+
+                        </td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+
+                {#                <tr>#}
+                {#                    <td>1</td>#}
+                {#                    <td>学习Flask</td>#}
+                {#                    <td>2020-3-14</td>#}
+                {#                    <td>紧急重要任务</td>#}
+                {#                    <td>#}
+                {#                        <a href="#" id="edit-btn"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>#}
+                {#                        &nbsp;&nbsp;#}
+                {#                        <a href="#" id="remove-btn"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>#}
+                {##}
+                {#                    </td>#}
+                {#                    <td>#}
+                {#                        <a href="#" id="edit-btn"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>#}
+                {#                        &nbsp;&nbsp;#}
+                {#                        <a href="#" id="remove-btn"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>#}
+                {##}
+                {##}
+                {#                    </td>#}
+                {#                </tr>#}
+            </table>
+                  <br/>
+            <nav aria-label="...">
+                <ul class="pager">
+                    {% if todoObj.has_prev %}
+                        <li class="previous"><a href="{{ url_for('todolist.list_1') }}?page={{ todoObj.prev_num }}"><span
+                                aria-hidden="true">&larr;</span> Previous Page</a></li>
+                    {% else %}
+                        <li class="previous disabled"><a href="#"><span aria-hidden="true">&larr;</span> Previous Page</a></li>
+                    {% endif %}
+
+
+                    <li class="previous_1 disabled text-center"><a href="#">{{ todoObj.page }} / {{ todoObj.pages }}</a>
+                    </li>
+
+                    {% if todoObj.has_next %}
+                        <li class="next"><a href="{{ url_for('todolist.list_1') }}?page={{ todoObj.next_num }}">Next Page <span
+                                aria-hidden="true">&rarr;</span></a></li>
+                    {% else %}
+                        <li class="next disabled"><a href="#">Next Page <span aria-hidden="true">&rarr;</span></a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+      </div>
+    </section>
+    <section id="contact" class="contact">
+                <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary col-lg-3 col-xs-offset-1" data-toggle="modal" data-target="#exampleModal">
+          Search By Module Title
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade col-lg-3" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Search By Module Title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form method="post" action="{{ url_for('todolist.search',id=current_user.id) }}">
+                    <div class="form-group">
+                        <label for="recipient-edit" class="col-form-label">Please enter what you want to search:</label>
+                        <input type="text" class="form-control" name="searchwhat" id="recipient-edit" placeholder="e.g. Module Title">
+                    </div>
+                </form>
+              </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" href="{{ url_for('todolist.search',id=current_user.id)}}">Search</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <button type="button" class="btn btn-primary col-lg-2 col-xs-offset-1" data-toggle="modal" data-target="#exampleModal">
+          Search By Assessment Title
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Search By Module Title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form method="post" action="{{ url_for('todolist.search',id=current_user.id) }}">
+                    <div class="form-group">
+                        <label for="recipient-edit" class="col-form-label">Please enter what you want to search:</label>
+                        <input type="text" class="form-control" name="searchwhat" id="recipient-edit" placeholder="e.g. Module Title">
+                    </div>
+                </form>
+              </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" href="{{ url_for('todolist.search',id=current_user.id)}}">Search</button>
+                </div>
+                </div>
+            </div>
+          </div>
+
+
+        <button type="button" class="btn btn-primary col-lg-2 col-xs-offset-1" data-toggle="modal" data-target="#exampleModal">
+          Search By Content
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Search By Module Title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form method="post" action="{{ url_for('todolist.search',id=current_user.id) }}">
+                    <div class="form-group">
+                        <label for="recipient-edit" class="col-form-label">Please enter what you want to search:</label>
+                        <input type="text" class="form-control" name="searchwhat" id="recipient-edit" placeholder="e.g. Module Title">
+                    </div>
+                </form>
+              </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" href="{{ url_for('todolist.search',id=current_user.id)}}">Search</button>
+              </div>
+            </div>
+          </div>
+          </div>
+
+        <button type="button" class="btn btn-primary col-lg-3 col-xs-offset-1" data-toggle="modal" data-target="#exampleModal">
+          Search By Priority
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Search By Module Title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form method="post" action="{{ url_for('todolist.search',id=current_user.id) }}">
+                    <div class="form-group">
+                        <label for="recipient-edit" class="col-form-label">Please enter what you want to search:</label>
+                        <input type="text" class="form-control" name="searchwhat" id="recipient-edit" placeholder="e.g. Module Title">
+                    </div>
+                </form>
+              </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" href="{{ url_for('todolist.search',id=current_user.id)}}">Search</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </section>
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-info">
+              <h3>To Do List<span>.</span></h3>
+              <p>
+                Author：Yijun Chen <br>
+                Type：To-do lists and schedules<br><br>
+                <strong>Phone:</strong> 13655033576<br>
+                <strong>Email:</strong> sc202yc@leeds.ac.uk<br>
+              </p>
+              <div class="social-links mt-3">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Jump to the other part</h4>
+            <ul class="toggle-footer">
+              <li><i class="bx bx-chevron-right"></i> <a href="#">User</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Manager</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Others</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Go To URL</h4>
+            <ul class="toggle-footer">
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ url_for('base.register') }}">Register</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ url_for('base.login') }}">Login</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ url_for('base.index') }}">Personal Center</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ url_for('todolist.list_1') }}">Task List</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ url_for('todolist.list_1') }}">Others</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4>Recommendation</h4>
+            <p>If you have any comments, please sign in here.</p>
+            <form action="" method="post">
+              <input type="email" name="email"><input type="submit" value="Submit">
+            </form>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        <strong><span>See the bottom to give a praise~</span></strong>
+      </div>
+      <div class="credits">
+        Designed by <a href="https://minerva.leeds.ac.uk/">Eason &nbsp; 陈奕俊</a>
+      </div>
+    </div>
+  </footer>
+        <div id="preloader"></div>
+        <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- JS 导入 --><script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+  <script src="../../static/js/purecounter.js"></script>
+  <script src="../../static/codebase/aos/aos.js"></script>
+  <script src="../../static/codebase/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../../static/js/glightbox.js"></script>
+  <script src="../../static/js/glightbox.min.js"></script>
+  <script src="../../static/js/isotope.pkgd.min.js"></script>
+  <script src="../../static/codebase/swiper/swiper-bundle.min.js"></script>
+  <!-- <script src="https://unpkg.com/swiper/swiper-bundle.js"> </script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"> </script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js.map"> </script> -->
+  <script src="../../static/js/validate.js"></script>
+
+  <!-- 自己的 JS -->
+  <script src="../../static/js/main.js"></script>
+{#    <script type="text/javascript" src="../static/js/index.js"></script>#}
+    <script src="../../static/js/clock.js"></script>
+    <script src="../../static/js/helang-clock.js"></script>
+    <script src="../../static/js/model.js"></script>
+{#    <script src="../static/js/xadmin.js"></script>#}
+</body>
+</html>

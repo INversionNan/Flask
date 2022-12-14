@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}Change Task List{% endblock %}
+
+{% block head%}
+{#    <link href="../static/css/todolist.css" rel="stylesheet">#}
+    <link href="../static/css/style_1.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+{#    {% import 'bootstrap/wtf.html' as wtf %}#}
+{##}
+{#    {{ wtf.quick_form(form) }}#}
+{#<button class="btn btn-default btn-success btn-todo-add" type="button">Add Task</button>#}
+        <div class="section-title1">
+          <p><strong>Change Task</strong></p>
+        </div>
+        <div>
+{#            <p><strong>Module Title</strong></p>#}
+{#            <form method="post" action="{{ url_for('todolist.change') }}" id="change">#}
+{#                {{ form.hidden_tag() }}#}
+{#                {{ form.moduleTitle() }}#}
+{##}
+{#                <p><strong>Assessment Title</strong></p>#}
+{##}
+{#                {{ form.assessmentTitle() }}#}
+{##}
+{#                <p><strong>Content</strong></p>#}
+{#                {{ form.content() }}#}
+{##}
+{#                <p><strong>Category</strong></p>#}
+{#                {{ form.category() }}#}
+{##}
+{#                <p><strong>Priority</strong></p>#}
+{##}
+{#                {{ form.urgent() }}#}
+{#                {{ form.csrf_token }}#}
+{#                {{ form.submit() }}#}
+{#            </form>#}
+                {% import 'bootstrap/wtf.html' as wtf %}
+
+    {{ wtf.quick_form(form) }}
+        </div>
+
+{% endblock %}

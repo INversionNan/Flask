@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Register">
+    <meta name="description" content="User register">
+    <title>Register</title>
+    <!-- Favicons -->
+    <link href="../static/img/favicon2.jpg" rel="icon" alt="title">
+    <link href="../static/img/favicon2.jpg" rel="apple-touch-icon" alt="title">
+
+    <!-- 谷歌字体导入 -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="../static/codebase/aos/aos.css" rel="stylesheet">
+    <link href="../static/codebase/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!--
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css"rel="stylesheet" >
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap-grid.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">-->
+
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="../static/codebase/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="../static/codebase/remixicon/remixicon.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="../static/codebase/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="../static/codebase/boxicons/css/boxicons.min.css" rel="stylesheet">
+
+    <link href="../static/css/login.css" rel="stylesheet">
+</head>
+<body class="login-bg">
+
+
+<div class="login layui-anim layui-anim-up">
+    <div class="title">Register</div>
+    <div id="darkbannerwrap"></div>
+    {% include 'flash.html'  %}
+    <form method="post" class="layui-form" action="{{ url_for('base.register') }}">
+{#        <input id="csrf_token" name="csrf_token" type="hidden" value="ImQ3OWZlMmYzNjNiMzRhMzI1Y2Q2NmY2ZTJlODJlZGRlNmM2ZDc1MGYi.XmScEg.PbcmAeMX-sMp89qhe-3W_LiSyM4">#}
+        {{ form.hidden_tag() }}
+
+        {{ form.email() }}
+{#        <input class="layui-input" id="email" lay-verify="required" name="email" placeholder="电子邮箱" required type="text" value="">#}
+        <p class="error">{{ form.email.errors[0] }}</p>
+
+
+        <hr class="hr15">
+
+
+{#        <input class="layui-input" id="username" lay-verify="required" name="username" placeholder="用户名" required type="text" value="">#}
+        {{ form.username() }}
+        <p class="error">{{ form.username.errors[0] }}</p>
+
+
+        <hr class="hr15">
+
+
+{#        <input class="layui-input" id="password" lay-verify="required" name="password" placeholder="密码" required type="password" value="">#}
+        {{ form.password() }}
+        <p class="error">{{ form.password.errors[0] }}</p>
+
+
+        <hr class="hr15">
+
+{#        <input class="layui-input" id="repassword" lay-verify="required" name="repassword" placeholder="确认密码" required type="password" value="">#}
+        {{ form.confirmPassword() }}
+        <p class="error">{{ form.confirmPassword.errors[0] }}</p>
+
+
+        <hr class="hr15">
+
+        {{ form.submit() }}
+{#        <input id="submit" name="submit" type="submit" value="注册">#}
+
+        <hr class="hr20">
+    </form>
+</div>
+  <!-- JS 导入 --><script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+  <script src="../static/js/purecounter.js"></script>
+  <script src="../static/codebase/aos/aos.js"></script>
+  <script src="../static/codebase/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../static/js/glightbox.js"></script>
+  <script src="../static/js/glightbox.min.js"></script>
+  <script src="../static/js/isotope.pkgd.min.js"></script>
+  <script src="../static/codebase/swiper/swiper-bundle.min.js"></script>
+  <!-- <script src="https://unpkg.com/swiper/swiper-bundle.js"> </script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"> </script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js.map"> </script> -->
+  <script src="../static/js/validate.js"></script>
+</body>
+</html>

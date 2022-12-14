@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Conan,index,hero">
+    <meta name="description" content="Most of the main content and introductions about Conan in it.">
+    <title>TO-do List Index</title>
+    <!-- Favicons -->
+    <link href="../static/img/favicon2.jpg" rel="icon" alt="title">
+    <link href="../static/img/favicon2.jpg" rel="apple-touch-icon" alt="title">
+
+    <!-- 谷歌字体导入 -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="../static/codebase/aos/aos.css" rel="stylesheet">
+    <link href="../static/codebase/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!--
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css"rel="stylesheet" >
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap-grid.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">-->
+
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="../static/codebase/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="../static/codebase/remixicon/remixicon.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="../static/codebase/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="../static/codebase/boxicons/css/boxicons.min.css" rel="stylesheet">
+
+    <link href="../static/css/style_1.css" rel="stylesheet">
+
+{#    <base target="_blank" />#}
+</head>
+<body class="login-bg">
+        <header id="header" class="fixed-top">
+        <div class="container d-flex align-items-center justify-content-lg-between block" data-move-y="200px" data-move-x="-200px">
+          <a href="https://www.todolist.cn" class="logo me-auto me-lg-0"><img src="../static/img/index.jpg" alt="todo" class="logo_1 img-fluid"></a>
+          <nav id="navbar" class="navbar order-last order-lg-0">
+            <ul>
+              <li><a class="nav-link scrollto active" href="#hero">Login</a></li>
+              <li><a class="nav-link scrollto" href="#about">Logout</a></li>
+              <li><a class="nav-link scrollto" href="#features">Personal Center</a></li>
+              <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+          </nav>
+
+          <a href="#about" class="get-started-btn scrollto">Drop down</a>
+
+        </div>
+      </header>
+
+  <section id="hero" class="d-flex align-items-center justify-content-center">
+    <div class="container block" data-aos="fade-up" data-move-y="200px" data-move-x="-200px">
+
+      <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
+        <div class="col-xl-7 col-lg-8">
+          <h1><span>Login</span></h1>
+          <h2>You should use your email to log in the to-do list.</h2>
+        </div>
+      </div>
+
+      <div class="row gy-4 mt-5 justify-content-center" data-aos="zoom-in" data-aos-delay="250">
+        <div class="col-xl-3 col-md-6">
+          <div class="icon-box">
+            <i class="ri-store-line"></i>
+            <div class="login layui-anim layui-anim-up">
+    <div class="title">Login</div>
+    <div id="darkbannerwrap"></div>
+   {% include 'flash.html' %}
+    <form method="post" class="layui-form" action="{{ url_for('base.login') }}">
+{#        <input id="csrf_token" name="csrf_token" type="hidden" value="IjUyZTQ4ZjJmNDQzNzY3NjZhNTBjYjBhZWI5NmRjYzUwNjMxNWI2OGUi.XmSbkg.AUwcT-RbgV38raemyQl1XRT9pRc">#}
+        {{ form.hidden_tag()  }}
+
+
+        {{ form.email() }}
+{#        <input class="layui-input" id="email" name="email" placeholder="电子邮箱" required type="text" value="">#}
+        <p class="error">{{ form.email.errors[0] }}</p>
+        <hr class="hr15">
+
+        {{ form.password }}
+{#        <input class="layui-input" id="password" name="password" placeholder=密码 required type="password" value="">#}
+
+        <p class="error"> {{ form.password.errors[0] }}</p>
+        <hr class="hr15">
+
+        {{ form.submit() }}
+{#        <input id="submit" name="submit" type="submit" value="登录">#}
+
+        <hr class="hr20">
+        </form>
+        </div>
+          </div>
+        </div>
+    </div>
+    <!-- <div class="col-lg-4 d-flex align-items-center justify-content-center position-relative" data-aos="zoom-in" data-aos-delay="200">
+      <a href="https://www.youtube.com/watch?v=u6BOC7CDUTQ" class="glightbox play-btn"></a> -->
+    </div>
+  </section>
+
+      <section id="cta" class="cta">
+        <div class="container" data-aos="zoom-in">
+
+            <div class="text-center">
+            <h3>To-do & Task List</h3>
+            <p><strong>The time of life is short; to spend that shortness basely, it would be too long.&nbsp;————&nbsp;William Shakespeare</strong></p>
+            <a class="cta-btn" href="https://www.todolist.cn">Learn More</a>
+            </div>
+
+         </div>
+      </section>
+
+    <section id="contact" class="contact">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Contact</h2>
+          <p>Your Comment</p>
+        </div>
+
+        <div class="row mt-5">
+
+          <div class="col-lg-4">
+            <div class="info">
+              <div class="address">
+                <i class="bi bi-geo-alt"></i>
+                <h4>Location:</h4>
+                <p>The SWJTU & The Leeds</p>
+              </div>
+
+              <div class="email">
+                <i class="bi bi-envelope"></i>
+                <h4>Email:</h4>
+                <p>sc202yc@leeds.ac.uk</p>
+              </div>
+
+              <div class="phone">
+                <i class="bi bi-phone"></i>
+                <h4>Phone</h4>
+                <p>13655066576</p>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="col-lg-8 mt-5 mt-lg-0">
+
+            <form  method="post" role="form" class="php-email-form"><!-- action="forms/contact.php" -->
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Name" required>
+                </div>
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Category" required>
+              </div>
+              <div class="form-group mt-3">
+                <textarea class="form-control" name="message" rows="5" placeholder="Content" required></textarea>
+              </div>
+              <div class="my-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div>
+              <div class="text-center"><button type="submit">Submit</button></div>
+            </form>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-info">
+              <h3><span>To-do List</span></h3>
+              <p>
+                Author：Yijun Chen <br>
+                Type：To-do lists and schedules<br><br>
+                <strong>Phone:</strong> 13655033576<br>
+                <strong>Email:</strong> sc202yc@leeds.ac.uk<br>
+              </p>
+              <div class="social-links mt-3">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Jump to the other part</h4>
+            <ul class="toggle-footer">
+              <li><i class="bx bx-chevron-right"></i> <a href="#">User</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Manager</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Others</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Go To URL</h4>
+            <ul class="toggle-footer">
+              <li><i class="bx bx-chevron-right"></i> <a href="Content/Plot and Character.html">Register</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="Content/Setting and Props.html">Login</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="Content/Wallpaper and Music.html">Personal Center</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="Content/Relevance and Evolution.html">Task List</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="Content/Comment and Production.html">Others</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4>Recommendation</h4>
+            <p>If you have any comments, please sign in here.</p>
+            <form action="" method="post">
+              <input type="email" name="email"><input type="submit" value="提交">
+            </form>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        <strong><span>See the bottom to give a praise~</span></strong>
+      </div>
+      <div class="credits">
+        Designed by <a href="https://minerva.leeds.ac.uk/">Eason &nbsp; 陈奕俊</a>
+      </div>
+    </div>
+  </footer>
+        <div id="preloader"></div>
+        <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- JS 导入 --><script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+  <script src="../static/js/purecounter.js"></script>
+  <script src="../static/codebase/aos/aos.js"></script>
+  <script src="../static/codebase/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../static/js/glightbox.js"></script>
+  <script src="../static/js/glightbox.min.js"></script>
+  <script src="../static/js/isotope.pkgd.min.js"></script>
+  <script src="../static/codebase/swiper/swiper-bundle.min.js"></script>
+  <!-- <script src="https://unpkg.com/swiper/swiper-bundle.js"> </script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"> </script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js.map"> </script> -->
+  <script src="../static/js/validate.js"></script>
+   <script src="../static/lib/layui/layui.js"></script>
+  <!-- 自己的 JS -->
+  <script src="../static/js/main.js"></script>
+</body>
+</html>

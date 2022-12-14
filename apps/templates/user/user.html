@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=1,target-densitydpi=low-dpi"/>
+    <title>Personal Center</title>
+
+    <!-- Bootstrap -->
+        <!-- Favicons -->
+    <link href="../../static/img/favicon2.jpg" rel="icon" alt="title">
+    <link href="../../static/img/favicon2.jpg" rel="apple-touch-icon" alt="title">
+
+    <!-- 谷歌字体导入 -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="../../static/codebase/aos/aos.css" rel="stylesheet">
+    <link href="../../static/codebase/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!--
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css"rel="stylesheet" >
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap-grid.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">-->
+
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="../../static/codebase/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="../../static/codebase/remixicon/remixicon.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href=".././static/codebase/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="../../static/codebase/boxicons/css/boxicons.min.css" rel="stylesheet">
+
+    <link href="../../static/css/style_1.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <header id="header" class="fixed-top">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{{ url_for('base.index') }}">TodoList</a>
+        </div>
+        <div class="container d-flex align-items-center justify-content-lg-between block" data-move-y="200px" data-move-x="-200px">
+          <a href="https://www.todolist.cn" class="logo me-auto me-lg-0"><img src="../../static/img/index.jpg" alt="todo" class="logo_1 img-fluid"></a>
+          <nav id="navbar" class="navbar order-last order-lg-0">
+            <ul>
+              <li><a class="nav-link scrollto active" href="#hero2">Add List</a></li>
+              <li><a class="nav-link scrollto" href="#about">Show to-do list</a></li>
+                <li><a href="{{ url_for('base.register') }}">Register</a></li>
+                <li class="dropdown"><a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">View By Status</a><span class="caret"></span>
+                  <ul class="dropdown-menu">
+                      <li><a href="{{ url_for('user.get_user', id=current_user.id) }}">Completed List</a></li>
+                      <li><a href="{{ url_for('user.change_user') }}">Uncompleted List</a></li>
+                  </ul>
+                </li>
+                    {% if current_user.is_authenticated %}
+
+                        <li><a href="{{ url_for('todolist.list_1') }}">{{ current_user.username }}</a></li>
+
+              <li class="dropdown"><a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Personal Center</a><span class="caret"></span>
+                  <ul class="dropdown-menu">
+                            <li><a href="{{ url_for('user.get_user', id=current_user.id) }}">Personal Information</a></li>
+                            <li><a href="{{ url_for('user.change_user') }}">Edit</a></li>
+                            <li><a href="{{ url_for('user.change_password', id=current_user.id) }}">Change Password</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="{{ url_for('base.logout') }}">Logout</a></li>
+                        </ul>
+              </li>
+                {% endif %}
+{#              <li><a class="nav-link scrollto " href="#portfolio"></a></li>#}
+{#              <li><a class="nav-link scrollto" href="#team">主角</a></li>#}
+              <li><a class="nav-link scrollto" href="{{ url_for('todolist.category') }}">Add Categories</a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+          </nav>
+          <a href="#about" class="get-started-btn scrollto">Drop down</a>
+        </div>
+    </header>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body ">
+                    <blockquote class="layui-elem-quote">Welcome：
+                        <span class="x-red">{{ current_user.username }}</span>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">Data Static</div>
+                <div class="layui-card-body ">
+                    <ul class="layui-row layui-col-space10 layui-this x-admin-carousel x-admin-backlog">
+                        <li class="layui-col-md2 layui-col-xs6">
+                            <a href="javascript:;" class="x-admin-backlog-body">
+                                <h3>Task Number</h3>
+                                <p>
+                                    <cite>14</cite></p>
+                            </a>
+                        </li>
+                        <li class="layui-col-md2 layui-col-xs6">
+                            <a href="javascript:;" class="x-admin-backlog-body">
+                                <h3>Completed</h3>
+                                <p>
+                                    <cite>
+
+                                    </cite>2</p>
+                            </a>
+                        </li>
+                        <li class="layui-col-md2 layui-col-xs6">
+                            <a href="javascript:;" class="x-admin-backlog-body">
+                                <h3>Uncompleted</h3>
+                                <p>
+                                    <cite>
+
+                                    </cite>12</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header">Personal Information</div>
+                <div class="layui-card-body ">
+                    <table class="layui-table">
+                        <tbody>
+                        <tr>
+                            <th>User Name</th>
+                            <td>{{ current_user.username }}</td>
+                        </tr>
+                        <tr>
+                            <th>User Address</th>
+                            <td>
+                                {{ current_user.location }}
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>
+                                {{ current_user.email }}
+
+                            </td>
+                        </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-info">
+              <h3>To Do List<span>.</span></h3>
+              <p>
+                Author：Yijun Chen <br>
+                Type：To-do lists and schedules<br><br>
+                <strong>Phone:</strong> 13655033576<br>
+                <strong>Email:</strong> sc202yc@leeds.ac.uk<br>
+              </p>
+              <div class="social-links mt-3">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>Jump to the other part</h4>
+            <ul class="toggle-footer">
+              <li><i class="bx bx-chevron-right"></i> <a href="#">User</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Manager</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Others</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Go To URL</h4>
+            <ul class="toggle-footer">
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ url_for('base.register') }}">Register</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ url_for('base.login') }}">Login</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ url_for('base.index') }}">Personal Center</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ url_for('todolist.list_1') }}">Task List</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ url_for('todolist.list_1') }}">Others</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4>Recommendation</h4>
+            <p>If you have any comments, please sign in here.</p>
+            <form action="" method="post">
+              <input type="email" name="email"><input type="submit" value="Submit">
+            </form>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        <strong><span>See the bottom to give a praise~</span></strong>
+      </div>
+      <div class="credits">
+        Designed by <a href="https://minerva.leeds.ac.uk/">Eason &nbsp; 陈奕俊</a>
+      </div>
+    </div>
+  </footer>
+        <div id="preloader"></div>
+        <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- JS 导入 --><script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+  <script src="../../static/js/purecounter.js"></script>
+  <script src="../../static/codebase/aos/aos.js"></script>
+  <script src="../../static/codebase/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../../static/js/glightbox.js"></script>
+  <script src="../../static/js/glightbox.min.js"></script>
+  <script src="../../static/js/isotope.pkgd.min.js"></script>
+  <script src="../../static/codebase/swiper/swiper-bundle.min.js"></script>
+  <!-- <script src="https://unpkg.com/swiper/swiper-bundle.js"> </script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"> </script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js.map"> </script> -->
+  <script src="../../static/js/validate.js"></script>
+
+  <!-- 自己的 JS -->
+  <script src="../../static/js/main.js"></script>
+</body>
+</html>

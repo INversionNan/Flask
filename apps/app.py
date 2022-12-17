@@ -1,16 +1,16 @@
-from flask import Flask, jsonify
+from flask import Flask
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
-from flask_mail import Mail
+from exts import mail, db
 from flask_login import LoginManager
 
 # app = Flask(__name__)
 
 from config import config
 
-mail = Mail()
+# mail = Mail()
 
-db = SQLAlchemy()
+# db = SQLAlchemy()
 
 bootstrap = Bootstrap()
 
@@ -20,26 +20,6 @@ login_manager.session_protection = 'strong'
 
 login_manager.login_view = 'base.login'
 
-
-# app.register_blueprint();
-# app.register_blueprint();
-# app.register_blueprint();
-
-# books = [
-#     {"id":1,"name":"盛婧雯"},
-#     {"id":2,"name":"陈奕俊"},
-# ]
-
-
-# @app.route("/book/<int:book_id>")
-# def book_detail(book_id):
-#     print(book_id)
-#     return "success"
-
-
-# @app.route('/')  # Set the URL to access, in this case to a root path
-# def hello_world():  # put application's code here
-#     return 'Hello 盛婧雯!'
 
 def create_app(config_name='development'):
     app = Flask(__name__)
@@ -52,9 +32,13 @@ def create_app(config_name='development'):
     }
     """
 
+
     app.config.from_object(config[config_name])
     config[config_name].init_app(app)
     db.init_app(app)
+    with app.app_context():
+        from apps.base import base
+        from apps.todolist.course import AddToDoList, ChangeToDoList
     mail.init_app(app)
     bootstrap.init_app(app)
     login_manager.init_app(app)
@@ -71,3 +55,5 @@ def create_app(config_name='development'):
         db.create_all()
 
     return app
+# if __name__ == '__main__':
+#     app.run()

@@ -9,6 +9,13 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 # app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # db = SQLAlchemy(app)
 
+# 邮箱配置
+# MAIL_USE_TLS：端口号587
+# MAIL_USE_SSL：端口号465
+# QQ邮箱不支持非加密方式发送邮件
+# 发送者邮箱的服务器地址
+
+
 
 class Config:
     """
@@ -32,16 +39,39 @@ class Config:
 
 
 class DevelopmentConfig(Config):
+    MAIL_SERVER = "smtp.qq.com"
+    MAIL_PORT = 587
+    MAIL_USE_TLS = True
+    # MAIL_USE_SSL
+    MAIL_USERNAME = "1052601616@qq.com"
+    MAIL_PASSWORD = "zztasmtbvegxbbhb"  # 生成授权码，授权码是开启smtp服务后给出的
+    MAIL_DEFAULT_SENDER = "1052601616@qq.com"
     Development = True
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'data.sqlite')
 
 
 class TestingConfig(Config):
+    MAIL_SERVER = "smtp.qq.com"
+    MAIL_PORT = 587
+    MAIL_USE_TLS = True
+    # MAIL_USE_SSL
+    MAIL_USERNAME = "1052601616@qq.com"
+    MAIL_PASSWORD = "zztasmtbvegxbbhb"  # 生成授权码，授权码是开启smtp服务后给出的
+    MAIL_DEFAULT_SENDER = "1052601616@qq.com"
+    Development = True
     Testing = True
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'data.sqlite')
 
 
 class ProductionConfig(Config):
+    MAIL_SERVER = "smtp.qq.com"
+    MAIL_PORT = 587
+    MAIL_USE_TLS = True
+    # MAIL_USE_SSL
+    MAIL_USERNAME = "1052601616@qq.com"
+    MAIL_PASSWORD = "zztasmtbvegxbbhb"  # 生成授权码，授权码是开启smtp服务后给出的
+    MAIL_DEFAULT_SENDER = "1052601616@qq.com"
+    Development = True
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'data.sqlite')
 
 

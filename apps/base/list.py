@@ -1,5 +1,5 @@
 from flask import Flask
-from apps.model import User
+from apps.model import User,EmailCodeModel
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Length, Email, Regexp, EqualTo, ValidationError
@@ -19,6 +19,7 @@ class RegisterList(FlaskForm):
         'class': "layui-input",
         "placeholder": "Email"
     })
+    certificationCode = StringField(validators=[Length(min=4, max=4, message="Incorrect form of certification code")])
 
     password = PasswordField("Password", validators=[DataRequired()],
                              render_kw={
@@ -43,6 +44,12 @@ class RegisterList(FlaskForm):
         if User.query.filter_by(username=field.data).first():
             raise ValidationError("The username %s has been registered." % field.data)
 
+    def validate_code(self, field):
+        code = field.data
+        email = self.email.data
+        code_model = EmailCodeModel.query.filter_by(email=email, code=code).first()
+        if not code_model:
+            raise ValidationError(message="Incorrect email or certification code")
 
 class LoginList(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Length(1, 64), Email()], render_kw={

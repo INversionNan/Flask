@@ -43,15 +43,25 @@
     <form method="post" class="layui-form" action="{{ url_for('base.register') }}">
 {#        <input id="csrf_token" name="csrf_token" type="hidden" value="ImQ3OWZlMmYzNjNiMzRhMzI1Y2Q2NmY2ZTJlODJlZGRlNmM2ZDc1MGYi.XmScEg.PbcmAeMX-sMp89qhe-3W_LiSyM4">#}
         {{ form.hidden_tag() }}
-
+        <hr class="hr15">
         {{ form.email() }}
 {#        <input class="layui-input" id="email" lay-verify="required" name="email" placeholder="电子邮箱" required type="text" value="">#}
         <p class="error">{{ form.email.errors[0] }}</p>
 
 
         <hr class="hr15">
-
-
+          <div class="wrap-input">
+             <div class="input-group">
+                 <input class="input_field" type="text" name="certificationCode" placeholder="Enter certification Code" required>
+                     <div class="input-group-append">
+                         <button class="btn btn-outline-secondary" type="button" id="code_btn">Get Certification Code</button>
+                     </div>
+             </div>
+              <span class="symbol-input_field">
+                  <i class="feather ft-mail"></i>
+              </span>
+          </div>
+        <hr class="hr15">
 {#        <input class="layui-input" id="username" lay-verify="required" name="username" placeholder="用户名" required type="text" value="">#}
         {{ form.username() }}
         <p class="error">{{ form.username.errors[0] }}</p>
@@ -89,6 +99,7 @@
   <script src="../static/js/glightbox.min.js"></script>
   <script src="../static/js/isotope.pkgd.min.js"></script>
   <script src="../static/codebase/swiper/swiper-bundle.min.js"></script>
+    <script src="../../static/js/register.js"></script>
   <!-- <script src="https://unpkg.com/swiper/swiper-bundle.js"> </script>
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"> </script>
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js.map"> </script> -->

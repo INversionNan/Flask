@@ -1,22 +1,10 @@
 from flask import Blueprint, Flask
-from apps.model import Task
+from apps.model import Task, Kind
 from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, ValidationError
 from wtforms.fields import DateField, DateTimeField, TextAreaField
 
-from apps.model import Kind
-from apps.app import create_app
-
-
-# from flask import current_app
-#
-# app = Flask(__name__)
-# with app.app_context():
-#     print(current_app.name())
-
-
-# course = Blueprint("")
 
 class AddCategory(FlaskForm):
     category = StringField(
@@ -66,12 +54,13 @@ class AddToDoList(FlaskForm):
     #                'aria-expanded': "false"
     #                }
     # )
+
     category = SelectField(
         label='Task Type',
         coerce=int,
         validators=[DataRequired()],
-        choices=[(1, 'Work'), (2, 'Learn'), (3, 'Life')],
-        # choices=[(item.id, item.name) for item in Kind.query.all()],
+        # choices=[(1, 'Work'), (2, 'Learn'), (3, 'Life')],
+        choices=[(item.id, item.name) for item in Kind.query.all()],
         render_kw={'class': "form-control btn btn-default dropdown-toggle align-center",
                    'type': "button",
                    'placeholder': 'Whether urgent or not',
@@ -148,8 +137,8 @@ class ChangeToDoList(FlaskForm):
     category = SelectField(
         label='Task Type',
         coerce=int,
-        choices=[(1, 'Urgent'), (2, 'Un')],
-        # choices=[(item.id, item.name) for item in Kind.query.all()],
+        # choices=[(1, 'Urgent'), (2, 'Un')],
+        choices=[(item.id, item.name) for item in Kind.query.all()],
         render_kw={'class': "form-control btn btn-default dropdown-toggle align-center",
                    'type': "button",
                    'data-toggle': "dropdown",

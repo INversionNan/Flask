@@ -1,12 +1,15 @@
-from flask import render_template, flash, redirect, url_for, Flask, request
-from flask_login import login_user, logout_user, login_required, current_user
+from flask import render_template, flash, redirect, url_for, request, jsonify
+from flask_login import login_user, logout_user, login_required
 
 from apps.base.list import RegisterList, LoginList
 from apps.base import base
 # from apps.base.__init__ import base
-from apps.model import User, Role
+from apps.model import User,EmailCodeModel
 from apps.app import db
-from datetime import date
+from exts import mail
+import string
+import random
+from flask_mail import Message
 
 
 # use blueprint and manage route
@@ -65,3 +68,26 @@ def logout():
     logout_user()
     flash("User has logged out successfully", category='success')
     return redirect(url_for('base.index'))
+
+
+# send certification code
+@base.route("/certificationCode/email")
+def get_certification_code():
+    email = request.args.get("email")
+    source = string.digits * 4
+    code = random.sample(source, 4)
+    code = "".join(code)
+    message = Message(subject="certificationCode", recipients=[email], body=f"Your certification code is: {code}")
+    mail.send(message)
+    email_code = EmailCodeModel(email=email, code=code)
+    db.session.add(email_code)
+    db.session.commit()
+    # print(code)
+    return jsonify({"code": 200, "message": "", "data": None})
+
+
+@base.route("/mailtest")
+def my_mail():
+    message = Message(subject="sendEmail", recipients=["1052601616@qq.com"], body="test")
+    mail.send(message)
+    return "send successfully"

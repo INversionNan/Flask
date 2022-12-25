@@ -15,14 +15,10 @@
           <p><strong>Add Task</strong></p>
         </div>
         <div>
-            <p><strong>Module Title</strong></p>
+            <p><strong>Task Title</strong></p>
             <form method="post" action="{{ url_for('todolist.add_list') }}" id="add">
                 {{ form.hidden_tag() }}
-                {{ form.moduleTitle() }}
-
-                <p><strong>Assessment Title</strong></p>
-
-                {{ form.assessmentTitle() }}
+                {{ form.Title() }}
 
                 <p><strong>Content</strong></p>
                 {{ form.content() }}

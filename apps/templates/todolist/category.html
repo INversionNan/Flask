@@ -9,15 +9,15 @@
         Category
     </title>
     <!-- Favicons -->
-    <link href="../static/img/favicon2.jpg" rel="icon" alt="title">
-    <link href="../static/img/favicon2.jpg" rel="apple-touch-icon" alt="title">
+    <link href="../../static/img/favicon2.jpg" rel="icon" alt="title">
+    <link href="../../static/img/favicon2.jpg" rel="apple-touch-icon" alt="title">
 
     <!-- 谷歌字体导入 -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- Bootstrap -->
-    <link href="../static/codebase/aos/aos.css" rel="stylesheet">
-    <link href="../static/codebase/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../static/codebase/aos/aos.css" rel="stylesheet">
+    <link href="../../static/codebase/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!--
     <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css"rel="stylesheet" >
     <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap-grid.css" rel="stylesheet">
@@ -25,14 +25,14 @@
 
     <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css" rel="stylesheet">
-    <link href="../static/codebase/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="../static/codebase/remixicon/remixicon.css" rel="stylesheet">
+    <link href="../../static/codebase/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="../../static/codebase/remixicon/remixicon.css" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-    <link href="../static/codebase/swiper/swiper-bundle.min.css" rel="stylesheet">
-    <link href="../static/codebase/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="../../static/codebase/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="../../static/codebase/boxicons/css/boxicons.min.css" rel="stylesheet">
 
-    <link href="../static/css/style_1.css" rel="stylesheet">
+    <link href="../../static/css/style_1.css" rel="stylesheet">
 </head>
 <body class="body">
     <header id="header" class="fixed-top">
@@ -43,18 +43,11 @@
           <a href="https://www.todolist.cn" class="logo me-auto me-lg-0"><img src="../static/img/index.jpg" alt="todo" class="logo_1 img-fluid"></a>
           <nav id="navbar" class="navbar order-last order-lg-0">
             <ul>
-              <li><a class="nav-link scrollto active" href="#hero2">Add List</a></li>
-              <li><a class="nav-link scrollto" href="#about">Show to-do list</a></li>
-                <li><a href="{{ url_for('base.register') }}">Register</a></li>
-                <li class="dropdown"><a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">View By Status</a><span class="caret"></span>
-                  <ul class="dropdown-menu">
-                      <li><a href="{{ url_for('user.get_user', id=current_user.id) }}">Completed List</a></li>
-                      <li><a href="{{ url_for('user.change_user') }}">Uncompleted List</a></li>
-                  </ul>
-                </li>
+              <li><a class="nav-link scrollto active" href="#hero2">Add Category</a></li>
+              <li><a class="nav-link scrollto" href="#about">Show category list</a></li>
+                <li><a href="{{ url_for('base.index') }}">Logout</a></li>
                     {% if current_user.is_authenticated %}
-
-                        <li><a href="{{ url_for('todolist.list_1') }}">{{ current_user.username }}</a></li>
+                        <li><a href="{{ url_for('todolist.list_1') }}">{{ current_user.username }} Go Back </a></li>
 
               <li class="dropdown"><a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Personal Center</a><span class="caret"></span>
                   <ul class="dropdown-menu">
@@ -122,9 +115,7 @@
                         <td>{{ kind.name}}</td>
                         <td>{{ kind.user_id}}</td>
                         <td>
-                            <a href="{{ url_for('todolist.change', id=kind.id) }}" class="btn btn-success btn-xs change"
-                               role="button">Change</a>
-                            <a href="{{ url_for('todolist.delete', id=kind.id) }}" class="btn btn-danger btn-xs delete"
+                            <a href="{{ url_for('todolist.deletec', id=kind.id) }}" class="btn btn-danger btn-xs delete"
                                role="button">Delete</a>
                         </td>
                     </tr>
@@ -139,7 +130,7 @@
 
           <div class="col-lg-3 col-md-6">
             <div class="footer-info">
-              <h3>To Do List<span>.</span></h3>
+              <h3>T B A<span>.</span></h3>
               <p>
                 Author：Yijun Chen <br>
                 Type：To-do lists and schedules<br><br>
@@ -203,23 +194,23 @@
 
   <!-- JS 导入 --><script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-  <script src="../static/js/purecounter.js"></script>
-  <script src="../static/codebase/aos/aos.js"></script>
-  <script src="../static/codebase/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="../static/js/glightbox.js"></script>
-  <script src="../static/js/glightbox.min.js"></script>
-  <script src="../static/js/isotope.pkgd.min.js"></script>
-  <script src="../static/codebase/swiper/swiper-bundle.min.js"></script>
+  <script src="../../static/js/purecounter.js"></script>
+  <script src="../../static/codebase/aos/aos.js"></script>
+  <script src="../../static/codebase/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../../static/js/glightbox.js"></script>
+  <script src="../../static/js/glightbox.min.js"></script>
+  <script src="../../static/js/isotope.pkgd.min.js"></script>
+  <script src="../../static/codebase/swiper/swiper-bundle.min.js"></script>
   <!-- <script src="https://unpkg.com/swiper/swiper-bundle.js"> </script>
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"> </script>
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js.map"> </script> -->
-  <script src="../static/js/validate.js"></script>
+  <script src="../../static/js/validate.js"></script>
 
   <!-- 自己的 JS -->
-  <script src="../static/js/main.js"></script>
+  <script src="../../static/js/main.js"></script>
 {#    <script type="text/javascript" src="../static/js/index.js"></script>#}
-    <script src="../static/js/clock.js"></script>
-    <script src="../static/js/helang-clock.js"></script>
+    <script src="../../static/js/clock.js"></script>
+    <script src="../../static/js/helang-clock.js"></script>
 {#    <script src="../static/js/xadmin.js"></script>#}
 </body>
 </html>

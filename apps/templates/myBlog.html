@@ -1,11 +1,11 @@
-{% extends 'base.html' %}
+{% extends 'base_blog.html' %}
 
 {% block title %}
-    在线博客平台.我的博客
+    My Blog
 {% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="/static/css/blogAll.css">
+<link rel="stylesheet" href="../static/css/blogAll.css">
 {% endblock %}
 
 {% block content %}
@@ -15,10 +15,10 @@
                 <li>
                     <a class="title" href="/blog/showBlog/{{ blog.id }}">{{ blog.title }}</a>
                     <p>
-                        发布人：{{ blog.user.name }} &nbsp;&nbsp;&nbsp;&nbsp;发布时间：{{ blog.create_time }}
+                        发布人：{{ blog.user.name }} &nbsp;&nbsp;&nbsp;&nbsp;Release Time：{{ blog.create_time }}
                         <span class="operation">
-                            <a href="/blog/update/{{ blog.id }}">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="javascript:;" onclick="del('/blog/delete/{{ blog.id }}', this)">删除</a>
+                            <a href="/blog/update/{{ blog.id }}">Change</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="javascript:;" onclick="del('/blog/delete/{{ blog.id }}', this)">Delete</a>
                         </span>
                     </p>
                 </li>

@@ -106,8 +106,7 @@
           <table class="table table-striped">
                 <tr>
                     <td>ID</td>
-                    <td>Module Title</td>
-                    <td>Assessment Title</td>
+                    <td>Task Title</td>
                     <td>Task Content</td>
                     <td>Deadline</td>
                     <td>Category</td>
@@ -119,8 +118,7 @@
                 {% for todo in todoObj.items %}
                     <tr>
                         <td>{{ todo.id }}</td>
-                        <td>{{ todo.task_moduleTitle }}</td>
-                        <td>{{ todo.task_assessmentTitle}}</td>
+                        <td>{{ todo.mentTitle}}</td>
                         <td>{{ todo.task_content }}</td>
                         <td>{{ todo.task_deadline }}</td>
                         <td>

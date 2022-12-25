@@ -1,0 +1,51 @@
+{% extends 'base_blog.html' %}
+
+{% block title %}
+    Blog Login
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="../static/css/register.css">
+{% endblock %}
+
+{% block content %}
+    <div class="register">
+        <h1>Login</h1>
+        <p class="tip">
+            {% for item in get_flashed_messages() %}
+            {{ item }}
+            {% endfor %}
+        </p>
+        <form class="layui-form" action="loginblog" method="post">
+            <div class="layui-form-item">
+                <label class="layui-form-label">Username</label>
+                <div class="layui-input-block">
+                    <input type="text" name="username" required  lay-verify="required" placeholder="Please enter Username" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">Password</label>
+                <div class="layui-input-block">
+                    <input type="password" name="password" required lay-verify="required" placeholder="Please enter password" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="formDemo">Submit</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">Reset</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script>
+        layui.use('form', function(){
+            var form = layui.form;
+            form.on('submit(formDemo)', function(data){
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block login_class %}
+    layui-this
+{% endblock %}

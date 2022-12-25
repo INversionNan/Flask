@@ -1,11 +1,11 @@
-{% extends 'base.html' %}
+{% extends 'base_blog.html' %}
 
 {% block title %}
-    在线博客平台.我的评论
+    My Comment
 {% endblock %}
 
 {% block css %}
-<link rel="stylesheet" href="/static/css/blogAll.css">
+<link rel="stylesheet" href="../static/css/blogAll.css">
 {% endblock %}
 
 {% block content %}
@@ -15,9 +15,9 @@
                 <li>
                     <a class="title" href="/blog/showBlog/{{ comment.blog_id }}">{{ comment.text }}</a>
                     <p>
-                        博客：<a href="/blog/showBlog/{{ comment.blog_id }}">{{ comment.blog.title }}</a> &nbsp;&nbsp;&nbsp;&nbsp;评论时间：{{ comment.create_time }}
+                        Blog：<a href="/blog/showBlog/{{ comment.blog_id }}">{{ comment.blog.title }}</a> &nbsp;&nbsp;&nbsp;&nbsp;Comment Time：{{ comment.create_time }}
                         <span class="operation">
-                            <a href="javascript:;" onclick="del('/blog/deleteCom/{{ comment.id }}', this)">删除</a>
+                            <a href="javascript:;" onclick="del('/blog/deleteCom/{{ comment.id }}', this)">Delete</a>
                         </span>
                     </p>
                 </li>
@@ -35,8 +35,8 @@
         function del(url, that){
             layui.use('layer', function(){
                 var layer = layui.layer;
-                layer.confirm('您确定要删除吗？', {
-                    btn: ['取消','确定']
+                layer.confirm('Are you sure you want to delete it?', {
+                    btn: ['No','Yes']
                 }, function(index){
                     layer.close(index);
                 }, function(){

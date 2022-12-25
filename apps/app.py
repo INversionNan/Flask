@@ -3,6 +3,7 @@ from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from exts import mail, db
 from flask_login import LoginManager
+from log import getLogHandler
 
 # app = Flask(__name__)
 
@@ -21,7 +22,8 @@ login_manager.session_protection = 'strong'
 login_manager.login_view = 'base.login'
 
 
-def create_app(config_name='development'):
+def create_app(config_name):
+    getLogHandler(config_name)
     app = Flask(__name__)
     """
     config = {
@@ -31,14 +33,14 @@ def create_app(config_name='development'):
        'default': DevelopmentConfig
     }
     """
-
-
+    # app.logger.addHandler(LogHandle.getLogHandler())
     app.config.from_object(config[config_name])
     config[config_name].init_app(app)
     db.init_app(app)
     with app.app_context():
         from apps.base import base
         from apps.todolist.course import AddToDoList, ChangeToDoList
+        from apps.todolist.base import AddCategory
     mail.init_app(app)
     bootstrap.init_app(app)
     login_manager.init_app(app)
@@ -48,6 +50,10 @@ def create_app(config_name='development'):
     app.register_blueprint(base)
     from apps.user import user
     app.register_blueprint(user)
+    from apps.user import blogindex
+    app.register_blueprint(blogindex)
+    from apps.user import blog
+    app.register_blueprint(blog)
     from apps.todolist import todolist
     app.register_blueprint(todolist)
 

@@ -25,12 +25,9 @@ class AddCategory(FlaskForm):
 
 
 class AddToDoList(FlaskForm):
-    moduleTitle = TextAreaField(label='Module Title', validators=[DataRequired()], render_kw={
+
+    Title = TextAreaField(label='Task Title', validators=[DataRequired()], render_kw={
         'placeholder': 'Module Title',
-        'class': 'form-control text-body', 'rows': 2
-    })
-    assessmentTitle = TextAreaField(label='Assessment Title', validators=[DataRequired()], render_kw={
-        'placeholder': 'Assessment Title',
         'class': 'form-control text-body', 'rows': 2
     })
     content = StringField(
@@ -40,35 +37,20 @@ class AddToDoList(FlaskForm):
                    'placeholder': 'Task Content',
                    'width': '70%', }
     )
-    # The drop - downlist
-    # category = SelectField(
-    #     label='Task Type',
-    #     coerce=int,
-    #     # choices=[(item.id, item.name) for item in Kind.query.all()],
-    #     choice = [],
-    #     render_kw={'class': "btn btn-default dropdown-toggle align-right",
-    #                'type': "button",
-    #                'placeholder': 'Category',
-    #                'data-toggle': "dropdown",
-    #                'aria-haspopup': "true",
-    #                'aria-expanded': "false"
-    #                }
-    # )
-
     category = SelectField(
-        label='Task Type',
-        coerce=int,
-        validators=[DataRequired()],
-        # choices=[(1, 'Work'), (2, 'Learn'), (3, 'Life')],
-        choices=[(item.id, item.name) for item in Kind.query.all()],
-        render_kw={'class': "form-control btn btn-default dropdown-toggle align-center",
-                   'type': "button",
-                   'placeholder': 'Whether urgent or not',
-                   'data-toggle': "dropdown",
-                   'aria-haspopup': "true",
-                   'aria-expanded': "false"
-                   }
-    )
+            label='Task Type',
+            coerce=int,
+            validators=[DataRequired()],
+            # choices=[(1, 'Work'), (2, 'Learn'), (3, 'Life')],
+            choices=[(item.id, item.name) for item in Kind.query.all()],
+            render_kw={'class': "form-control btn btn-default dropdown-toggle align-center",
+                       'type': "button",
+                       'placeholder': 'Whether urgent or not',
+                       'data-toggle': "dropdown",
+                       'aria-haspopup': "true",
+                       'aria-expanded': "false"
+                       }
+        )
     urgent = SelectField(
         label='Task Priority',
         validators=[DataRequired()],
@@ -127,8 +109,7 @@ class AddToDoList(FlaskForm):
 
 
 class ChangeToDoList(FlaskForm):
-    moduleTitle = StringField(label='Module Title', validators=[DataRequired()])
-    assessmentTitle = StringField(label='Assessment Title', validators=[DataRequired()])
+    Title = StringField(label='Task Title', validators=[DataRequired()])
     content = StringField(
         label='Task Content',
         validators=[DataRequired()]

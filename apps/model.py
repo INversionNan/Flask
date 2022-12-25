@@ -5,8 +5,16 @@ from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from authlib.jose import jwt, JoseError
 
-
 # from datetime import datetimepicker
+
+table_user_comment = db.Table("table_user_comment",
+                              db.Column("user_id", db.Integer, db.ForeignKey("users.id"), primary_key=True),
+                              db.Column("comment_id", db.Integer, db.ForeignKey("comment.id"), primary_key=True))
+
+table_user_role = db.Table("table_user_role",
+                           db.Column("user_id", db.Integer, db.ForeignKey("users.id"), primary_key=True),
+                           db.Column("role_id", db.Integer, db.ForeignKey("role.id"), primary_key=True))
+
 
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
@@ -27,8 +35,9 @@ class User(UserMixin, db.Model):
     last = db.Column(db.DateTime(), default=datetime.utcnow())
 
     # foreign key link
-    Role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+    # Role_id = db.relationship("Role", secondary=table_user_role, backref=db.backref("user"))
     tasks = db.relationship('Task', backref='user')
+
     # 反向引用: 1). User添加属性categories   2). Category添加属性user
     categories = db.relationship('Kind', backref='user')
 
@@ -79,9 +88,8 @@ class Role(db.Model):
     __tablename__ = 'roles'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(100), unique=True, nullable=False)
-    # 做了两件事情: 1). Role添加属性users    2). User添加属性role
-    users = db.relationship('User', backref='role')
 
+    # num = db.Column(db.Integer,default=10)
     def __repr__(self):
         return "<Role: %s>" % self.name
 
@@ -89,8 +97,7 @@ class Role(db.Model):
 class Task(db.Model):
     __tablename__ = 'tasks'
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    task_moduleTitle = db.Column(db.String(200))  # task module title
-    task_assessmentTitle = db.Column(db.String(200))  # task assessment title
+    task_Title = db.Column(db.String(200))  # task  title
     task_content = db.Column(db.String(200))  # task content
     task_status = db.Column(db.Boolean, default=False)  # task status
     task_time = db.Column(db.DateTime, default=datetime.utcnow)  # task create time
@@ -118,12 +125,14 @@ class Kind(db.Model):
     def __repr__(self):
         return "<Category %s>" % self.name
 
+
 class EmailCodeModel(db.Model):
     __tablename__ = "email_code"
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(100))
     code = db.Column(db.String(100))
     # used = db.Column(db.Boolean)
+
 
 class Blog(db.Model):
     __tablename__ = 'blog'
@@ -132,7 +141,7 @@ class Blog(db.Model):
     text = db.Column(db.TEXT)
     create_time = db.Column(db.String(64))
     # 关联用户id
-    user_id = db.Column(db.Integer, db.ForeignKey('tb_user.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     user = db.relationship('User', backref='user')
 
 
@@ -144,9 +153,10 @@ class Comment(db.Model):
     # 关联博客id
     blog_id = db.Column(db.Integer, db.ForeignKey("blog.id"))
     # 关联用户id
-    user_id = db.Column(db.Integer, db.ForeignKey("tb_user.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     blog = db.relationship("Blog", backref="blog")
     user = db.relationship("User", backref="use")
+
 
 @login_manager.user_loader
 def load_user(user_id):

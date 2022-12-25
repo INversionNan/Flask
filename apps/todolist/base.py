@@ -29,21 +29,22 @@ def add_list():
 
     if list.validate_on_submit():
         # get users submission
-        moduleTitle = list.moduleTitle.data
-        assessmentTitle = list.assessmentTitle.data
+        Title = list.Title.data
         content = list.content.data
         kind_id = list.category.data
         urgent = list.urgent.data
         deadline = list.deadline.data
         # add to database
         status = False
-        add = Task(task_moduleTitle=moduleTitle, task_assessmentTitle=assessmentTitle, task_content=content,
+        add = Task(task_Title=Title, task_content=content,
                    category_id=kind_id,
                    task_urgent=urgent, task_deadline=deadline, user_id=current_user.id, task_status=status)
         db.session.add(add)
         flash('Add task successfully!', category='success')
         return redirect(url_for('todolist.add_list'))
-    return render_template('todolist/list.html', todoObj=todolistPage, form=list)
+    else:
+        flash('Cannot add this task!', category='error')
+        return render_template('todolist/list.html', todoObj=todolistPage, form=list)
 
 
 @todolist.route('/change/<int:id>', methods=['GET', 'POST'])
@@ -58,27 +59,26 @@ def change(id):
     # list.category.data = task.category_id
     # list.urgent.data = task.task_urgent
     # list.deadline.data = task.task_deadline
-    list.moduleTitle.data = task.task_moduleTitle
-    list.assessmentTitle.data = task.task_assessmentTitle
+    list.Title.data = task.task_moduleTitle
     list.urgent.data = task.task_urgent
     list.category.data = task.category_id
 
     if list.validate_on_submit():
         content = request.form.get('content')
-        moduleTitle = request.form.get('moduleTitle')
+        Title = request.form.get('Title')
         category_id = request.form.get('category')
-        assessmentTitle = request.form.get('assessmentTitle')
         urgent = request.form.get('urgent')
         task.task_content = content
         task.category_id = category_id
         task.urgent = urgent
-        task.task_assessmentTitle = assessmentTitle
-        task.task_moduleTitle = moduleTitle
+        task.task_Title = Title
 
         db.session.add(task)
         flash('Task has been changed', category='success')
         return redirect(url_for('todolist.list_1'))
-    return render_template('todolist/change.html', form=list, todoObj=todolistPage)
+    else:
+        flash('Changed failed', category='error')
+        return render_template('todolist/change.html', form=list, todoObj=todolistPage)
 
 
 @todolist.route('/delete/<int:id>/')
@@ -90,6 +90,18 @@ def delete(id):
     flash("Task has been deleted successfully.", category='success')
     return redirect(url_for('todolist.list_1'))
 
+
+@todolist.route('/deletec/<int:id>/')
+@login_required
+def deletec(id):
+    kind = Kind.query.filter_by(id=id).first()
+    # task.task_status = True
+    db.session.delete(kind)
+    flash("Category has been deleted successfully.", category='success')
+    category_list = AddCategory()
+    KindPage = Kind.query.filter_by(user_id=current_user.id).paginate(per_page=current_app.config['PER_PAGE'],
+                                                                      error_out=False)
+    return render_template('todolist/category.html', kindObj=KindPage, form=category_list)
 
 @todolist.route('/hasdone/<int:id>/')
 @login_required
@@ -138,20 +150,11 @@ def search(id):
     return render_template('todolist/search.html', todoObj=task)
 
 
-@todolist.route('/searchModuleTitle/<int:id>/', methods=['POST', 'GET'])
+@todolist.route('/searchTitle/<int:id>/', methods=['POST', 'GET'])
 @login_required
-def search_ModuleTitle(id):
-    moduleTitle = request.form.get('moduleTitle')
-    task = Task.query.filter_by(user_id=id, task_moduleTitle=moduleTitle).paginate(per_page=current_app.config['C_PAGE'],
-                                                                          error_out=False)
-    return render_template('todolist/search.html', todoObj=task)
-
-
-@todolist.route('/searchAssessmentTitle/<int:id>/', methods=['POST', 'GET'])
-@login_required
-def search_AssessmentTitle(id):
-    assessmentTitle = request.form.get('assessmentTitle')
-    task = Task.query.filter_by(user_id=id, task_assessmentTitle=assessmentTitle).paginate(per_page=current_app.config['C_PAGE'],
+def search_Title(id):
+    Title = request.form.get('Title')
+    task = Task.query.filter_by(user_id=id, task_Title=Title).paginate(per_page=current_app.config['C_PAGE'],
                                                                           error_out=False)
     return render_template('todolist/search.html', todoObj=task)
 
@@ -199,7 +202,9 @@ def add_category():
         db.session.add(add)
         flash('Add category successfully!', category='success')
         return redirect(url_for('todolist.category'))
-    return render_template('todolist/category.html', kindObj=KindPage, form=list)
+    else:
+        flash('Cannot add this category', category='error')
+        return render_template('todolist/category.html', kindObj=KindPage, form=list)
 
 
 @todolist.route('/complete/<int:id>/', methods=['POST', 'GET'])

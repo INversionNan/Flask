@@ -1,5 +1,5 @@
 from apps.user import user
-from apps.model import User
+from apps.model import User, Blog, Comment
 from apps.app import db
 
 from flask import Flask, render_template, flash, redirect, abort, url_for
@@ -20,7 +20,6 @@ def get_user(id):
 
 @user.route('/changedpassword/<id>')
 def change_password(id):
-
     return 'change password'
 
 
@@ -38,3 +37,10 @@ def change_user():
     user_list.location.data = current_user.location
     user_list.information.data = current_user.information
     return render_template('user/change.html', form=user_list)
+
+
+@user.route('/showBlog/<id>')
+def showBlog(id):
+    blog = Blog.query.filter(Blog.id == id).first()
+    comment = Comment.query.filter(Comment.blog_id == blog.id)
+    return render_template("showBlog.html", blog=blog, comment=comment)

@@ -1,5 +1,5 @@
 import os
-
+import logging
 # 获取当前项目的绝对路径;
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -21,6 +21,7 @@ class Config:
     """
     所有配置环境的基类, 包含通用配置
     """
+    LOG_LEVEL = logging.DEBUG
     # 尤其是涉及(flask-wtf)登录注册里面提交敏感信息时，一定要加
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'Yijun Chen'
     # flask-SQLAlchemy
@@ -39,6 +40,13 @@ class Config:
 
 
 class DevelopmentConfig(Config):
+
+    DEBUG = True
+    # 邮箱配置
+    # MAIL_USE_TLS：端口号587
+    # MAIL_USE_SSL：端口号465
+    # QQ邮箱不支持非加密方式发送邮件
+    # 发送者邮箱的服务器地址
     MAIL_SERVER = "smtp.qq.com"
     MAIL_PORT = 587
     MAIL_USE_TLS = True
@@ -51,6 +59,8 @@ class DevelopmentConfig(Config):
 
 
 class TestingConfig(Config):
+    DEBUG = True
+    TESTING = True
     MAIL_SERVER = "smtp.qq.com"
     MAIL_PORT = 587
     MAIL_USE_TLS = True
@@ -64,6 +74,7 @@ class TestingConfig(Config):
 
 
 class ProductionConfig(Config):
+    DEBUG = False
     MAIL_SERVER = "smtp.qq.com"
     MAIL_PORT = 587
     MAIL_USE_TLS = True
@@ -81,3 +92,4 @@ config = {
     'production': ProductionConfig,
     'default': DevelopmentConfig
 }
+

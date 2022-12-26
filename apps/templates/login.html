@@ -43,6 +43,29 @@
             form.on('submit(formDemo)', function(data){
             });
         });
+             $.ajax({
+        url: '/loginblog',
+        data: {
+            username: username,
+            password: password
+        },
+        type: 'GET',
+        success: function (result) {
+            if (result.code === 0) {
+                if(val === num){
+                    layer.msg("登录成功", function () {
+                        window.location.href = "index1.html?"+$("#username").val()+"";
+                    })
+                    }else{
+                    layer.msg('验证码错误')
+                }
+            } else {
+                layer.msg("登录失败，" + result.msg, {icon: 2})
+            }
+        }
+    })
+}
+
     </script>
 {% endblock %}
 

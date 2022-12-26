@@ -37,13 +37,13 @@ def create_app(config_name):
     app.config.from_object(config[config_name])
     config[config_name].init_app(app)
     db.init_app(app)
-    with app.app_context():
-        from apps.base import base
-        from apps.todolist.course import AddToDoList, ChangeToDoList
-        from apps.todolist.base import AddCategory
+
     mail.init_app(app)
     bootstrap.init_app(app)
     login_manager.init_app(app)
+    with app.app_context():
+        from apps.base import base
+        from apps.todolist.course import AddToDoList, ChangeToDoList
 
     # Register the blueprint and associate it with the app
     from apps.base import base

@@ -68,9 +68,9 @@ class TestingConfig(Config):
     MAIL_USERNAME = "1052601616@qq.com"
     MAIL_PASSWORD = "zztasmtbvegxbbhb"  # 生成授权码，授权码是开启smtp服务后给出的
     MAIL_DEFAULT_SENDER = "1052601616@qq.com"
-    Development = True
+
     Testing = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'data.sqlite')
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'data-test.sqlite')
 
 
 class ProductionConfig(Config):
@@ -82,7 +82,6 @@ class ProductionConfig(Config):
     MAIL_USERNAME = "1052601616@qq.com"
     MAIL_PASSWORD = "zztasmtbvegxbbhb"  # 生成授权码，授权码是开启smtp服务后给出的
     MAIL_DEFAULT_SENDER = "1052601616@qq.com"
-    Development = True
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'data.sqlite')
 
 

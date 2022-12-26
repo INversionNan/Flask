@@ -4,7 +4,7 @@ from flask_login import login_required, current_user
 from apps.app import db
 from apps.model import Task, Kind
 from apps.todolist import todolist
-from apps.todolist.course import AddToDoList, ChangeToDoList, AddCategory
+from apps.todolist.course import AddCategory, AddToDoList, ChangeToDoList
 
 
 # User View Task List

@@ -9,10 +9,12 @@ Description:
 import unittest
 import random
 
+
 class TestSequenceFunctions(unittest.TestCase):
     """
      setUp() 和 tearDown() 方法分别在各测试前后运行,并且名字以 test_ 开头的函数都作为测试执行。
     """
+
     def setUp(self) -> None:
         self.seq = [0, 1, 2, 3, 4, 5, 6, 7]
 
@@ -33,6 +35,3 @@ class TestSequenceFunctions(unittest.TestCase):
 
     def tearDown(self) -> None:
         del self.seq
-
-
-

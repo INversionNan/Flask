@@ -1,20 +1,486 @@
-{% extends 'base_blog.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Conan,music,gallery">
+    <meta name="description" content="Most of the beautiful wallpaper and beautiful music about detective Conan in it.">
+    <title>动画壁纸与音乐</title>
+    <!-- Favicons -->
+    <link href="../static/img/favicon2.jpg" rel="icon" alt="title">
+    <link href="../static/img/favicon2.jpg" rel="apple-touch-icon" alt="title">
 
-{% block title %}
-    About
-{% endblock %}
+    <!-- 谷歌字体导入 -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-{% block css %}
+    <!-- Bootstrap -->
+    <link href="../static/codebase/aos/aos.css" rel="stylesheet">
+        <script src="../static/js/jquery.min.js"></script>
+      <script src="../static/codebase/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <link href="../static/codebase/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!--
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css"rel="stylesheet" >
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap-grid.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">-->
 
-{% endblock %}
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-{% block content %}
-    <div class="main">
-        Welcome to Blog System Here ~~
-        <hr>
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="../static/codebase/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="../static/codebase/remixicon/remixicon.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="../static/codebase/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="../static/codebase/boxicons/css/boxicons.min.css" rel="stylesheet">
+
+</head>
+<body class="body_1">
+    <header id="header" class="fixed-top  header-inner-pages">
+        <div class="container d-flex align-items-center justify-content-lg-between block" data-move-y="200px" data-move-x="-200px">
+          <a href="https://baike.baidu.com/item/%E5%90%8D%E4%BE%A6%E6%8E%A2%E6%9F%AF%E5%8D%97/8947"  target="_blank" class="logo me-auto me-lg-0"><img src="../img/15.jpg" alt="名侦探柯南" class="logo_1 img-fluid"></a>
+          <nav id="navbar" class="navbar order-last order-lg-0">
+            <ul>
+              <li><a class="nav-link scrollto active" href="#gallery">精美壁纸</a></li>
+              <li><a class="nav-link scrollto" href="#about">拼图游戏</a></li>
+              <li><a class="nav-link scrollto" href="#services">音乐轮播</a></li>
+              <li><a class="nav-link scrollto " href="#footer">惊喜</a></li>
+              <!-- <li class="dropdown"><a href="#"><span>旧的</span> <i class="bi bi-chevron-down"></i></a>
+                <ul>
+                  <li class="dropdown"><a href="#">相关介绍<i class="bi bi-chevron-right"></i></a>
+                    <ul>
+                        <li><a href="../Content/剧情介绍.html" target="_blank">剧情介绍</a></li>
+                        <li><a href="../Content/角色介绍.html" target="_blank">角色介绍</a></li>
+                        <li><a href="../Content/道具设定.html" target="_blank">道具设定</a></li>
+                    </ul>
+                   </li>   
+                  <li class="dropdown"><a href="#"><span>关于音画</span> <i class="bi bi-chevron-right"></i></a>
+                    <ul>
+                      <li><a href="../Content/精美壁纸.html" target="_blank">精美壁纸</a></li>
+                      <li><a href="../Content/动画音乐.html" target="_blank">动画音乐</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown"><a href="#">作品延伸<i class="bi bi-chevron-right"></i></a>
+                    <ul>
+                      <li><a href="../Content/作品沿革.html" target="_blank">作品沿革</a></li>
+                      <li><a href="../Content/关联事物.html" target="_blank">关联事物</a></li>
+                    </ul></li>
+                  <li class="dropdown"><a href="#">其他内容<i class="bi bi-chevron-right"></i></a>
+                  <ul>
+                    <li><a href="../Content/动画制作.html" target="_blank">动画制作</a></li>
+                    <li><a href="../Content/网友点评.html" target="_blank">网友点评</a></li>
+                  </ul></li>
+                </ul>
+              </li> -->
+              <li><a class="nav-link scrollto" href="../index.html">回到主页</a></li>
+            </ul>
+            <i class="bi bi-list mobile-nav-toggle"></i>
+          </nav>
+    
+          <a href="#portfolio" class="get-started-btn scrollto">快看惊喜~</a>
+    
+        </div>
+      </header>
+  
+
+  <main id="main">      
+       
+    <section id="gallery" class="gallery">
+      <br>
+      <br>
+      <br>
+      <br>
+      <div class="container" data-aos="fade-up">
+        <div class="section-title1">
+          <h2>Longhorn Wallpaper</h2>
+          <p><strong>精美壁纸</strong></p>
+        </div>
+      </div>
+
+      <div class="container-fluid" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row g-0">
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="../static/img/封面壁纸.jpg" class="gallery-lightbox" data-gall="gallery-item">
+                <img src="../static/img/封面壁纸.jpg" alt="柯哀" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4 ">
+            <div class="gallery-item">
+              <a href="../static/img/灰原哀1.jpg" class="gallery-lightbox" data-gall="gallery-item">
+                <img src="../static/img/灰原哀1.jpg" alt="灰原哀" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="../static/img/怪盗基德.png" class="gallery-lightbox" data-gall="gallery-item">
+                <img src="../static/img/怪盗基德.png" alt="怪盗基德" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="../static/img/怪盗基德1.jpg" class="gallery-lightbox" data-gall="gallery-item">
+                <img src="../static/img/怪盗基德1.jpg" alt="怪盗基德壁纸" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="../static/img/壁纸2.jpg" class="gallery-lightbox" data-gall="gallery-item">
+                <img src="../static/img/壁纸2.jpg" alt="合集壁纸" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="../static/img/壁纸3.jpg" class="gallery-lightbox" data-gall="gallery-item">
+                <img src="../static/img/壁纸3.jpg" alt="电影海报" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="../static/img/壁纸4.png" class="gallery-lightbox" data-gall="gallery-item">
+                <img src="../static/img/壁纸4.png" alt="精美壁纸7" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="../static/img/名侦探柯南壁纸.png" class="gallery-lightbox" data-gall="gallery-item">
+                <img src="../static/img/名侦探柯南壁纸.png" alt="精美壁纸8" class="img-fluid">
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+      
+      <section id="about" class="features">
+        <div class="container block" data-aos="fade-up" data-move-y="200px" data-move-x="-200px">
+          <div class="container" data-aos="fade-up">
+            <div class="section-title1">
+              <h2>jigsaw puzzle</h2>
+              <p><strong>拼图游戏</strong></p>
+            </div>
+          </div>
+          <div class="row col-lg-8 " data-aos="fade-up" data-move-y="200px" data-move-x="-200px">
+            <!-- <div class="image col-lg-6 picture1" data-aos="fade-right"></div> -->
+            <div class="wrap"></div>
+            <div class="btnBbox col-lg-4">
+              <button class="btn" type="button">开始</button>
+              <div class="selectbox col-lg-4 ">
+                  <button class="text">简单</button>
+                  <ul class="box3">
+                      <li>简单</li>
+                      <li>入门</li>
+                      <li>中等</li>
+                      <li>高难</li>
+                      <li>外星人</li>
+                  </ul>
+              </div>
+          </div>
+          <div class="picBox block image col-lg-8 mt-3" data-move-y="200px" data-move-x="-200px">
+              <ul class="list" data-aos="fade-up" data-move-y="200px" data-move-x="-200px"></ul>
+          </div>
+        </div>
+            <div class="col-lg-4" data-aos="fade-left" data-aos-delay="100">
+              
+              <div class="icon-box mt-5" data-aos="zoom-in" data-aos-delay="150">
+                <i class="bx bx-shield"></i>
+                <h4>拼图复原游戏</h4>
+                <p>你可以尝试挑战一下！</p>
+                <p><strong>You can try the challenge!</strong></p>
+              </div>
+            </div>
+
+            <div class="col-lg-4" data-aos="fade-left" data-aos-delay="100">
+              
+              <div class="icon-box mt-5" data-aos="zoom-in" data-aos-delay="150">
+                <i class="bx bxl-steam"></i>
+                <h4>难度分为</h4>
+                <p>简单，入门，中等，高难，外星人</p>
+                <p><strong>Welcome to aliens！</strong></p>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="col-lg-4" data-aos="fade-left" data-aos-delay="100">
+              
+            <div class="icon-box mt-5" data-aos="zoom-in" data-aos-delay="150">
+              <i class="bx bxl-steam"></i>
+              <h4>过关条件</h4>
+              <p>将拼图按找拖动的方式</p>
+              <p><strong>Drag the jigsaw puzzle~</strong></p>
+            </div>
+          </div>
+        </div> -->
+  
+        </div>
+      </section>
+      <div class="row gy-4 mt-5 justify-content-center" data-aos="zoom-in" data-aos-delay="250"></div>
+
+      <div class="box small"></div>
+      <div class="box big"></div>
+      <div class="box top"></div>
+
+<section id="services" class="testimonialss section-bg">
+  <div class="container" data-aos="fade-up">
+
+    <div class="section-title1">
+      <h2>Music Shuffling</h2>
+      <p><strong>音乐轮播</strong></p>
     </div>
-{% endblock %}
 
-{% block about_class %}
-    layui-this
-{% endblock %}
+    <div class="testimonialss-slider swiper" data-aos="fade-up" data-aos-delay="100">
+      <div class="swiper-wrapper">
+
+        <div class="swiper-slide">
+          <div class="testimonials-item">
+              <img src="../img/9.jpg" class="testimonials-img" alt="灰原哀" onClick="play1()">
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="testimonials-item">
+              <img src="../image/江户川柯南.jpg" class="testimonials-img" alt="江户川柯南" onClick="play2()">
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="testimonials-item">
+              <img src="../image/头像5.jpg" class="testimonials-img" alt="小兰" onClick="play3()">
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="testimonials-item">
+              <img src="../img/6.jpg" class="testimonials-img" alt="鲁邦三世" onClick="play4()">
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="testimonials-item">
+              <img src="../img/06.jpg" class="testimonials-img" alt="世良真纯" onClick="play5()">
+          </div>
+        </div>
+
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+    <audio id="music1" src="../music/Schuwenn Z.钢琴作曲 - 名侦探柯南主题曲＜如果有你在＞（＜银翼的魔术师＞钢琴改编版）Detective Conan Main Theme.mp3" loop autoplay></audio>
+    <audio id="music2" src="../music/倉木麻衣 - always.mp3" loop autoplay></audio>
+    <audio id="music3" src="../music/1.mp3" loop autoplay></audio>
+    <audio id="music4" src="../music/绯村柯北 - 谜-TV动画《名侦探柯南》OP.mp3" loop autoplay></audio>
+    <audio id="music5" src="../music/阿七本七 - 转动命运之轮（《名侦探柯南》TVsize主题曲）（翻自 ZARD）.mp3" loop autoplay></audio>
+  </div>
+</section>
+<section id="testimonials" class="testimonials">
+  <div class="container" data-aos="zoom-in">
+
+    <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+      <div class="swiper-wrapper">
+
+        <div class="swiper-slide">
+          <div class="testimonial-item">
+            <img src="../static/img/14 - 副本.png" class="testimonial-img" alt="服部平次">
+            <h3>1.如果有你在</h3>
+            <h4>By: &nbsp;Schuwenn Z</h4>
+            <p>
+              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+              《如果有你在》作为名柯标志性战斗时的BGM，被粉丝们称为战歌，旋律深入人心。
+              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+            </p>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="testimonial-item">
+            <img src="../static/img/03.jpg" class="testimonial-img" alt="佐藤警官">
+            <h3>2.always</h3>
+            <h4>By: &nbsp;仓木麻衣</h4>
+            <p>
+              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+              这首always是名侦探柯南233~247集的插曲，是由仓木麻衣老师演唱的经典之作。
+              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+            </p>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="testimonial-item">
+            <img src="../static/img/6.jpg" class="testimonial-img" alt="怪盗基德">
+            <h3>3.纯音乐</h3>
+            <h4>By: &nbsp;怪盗基德</h4>
+            <p>
+              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+              世界上有些事，还是让它永远变成迷比较好。&nbsp;————&nbsp;怪盗基德
+              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+            </p>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="testimonial-item">
+            <img src="../static/img/05.jpg" class="testimonial-img" alt="灰原哀">
+            <h3>3.谜</h3>
+            <h4>By: &nbsp;绯村柯北</h4>
+            <p>
+              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+              《迷》作为名侦探柯南早期的经典主题曲，是由绯村柯北老师演唱，每当此音乐想起，各种案件都会浮现于脑海中。
+              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+            </p>
+          </div>
+        </div>
+
+        <div class="swiper-slide">
+          <div class="testimonial-item">
+            <img src="../static/img/04.jpg" class="testimonial-img" alt="毛利兰">
+            <h3>5转动命运之轮</h3>
+            <h4>By: &nbsp;阿七本七</h4>
+            <p>
+              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+              这首歌一定满载大家童年的回忆~它是阿七本七为名侦探柯南97~123集演唱的主题曲。
+              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+
+  </div>
+</section>
+  <div class="box1"id="portfolio">
+    <ul class="minbox">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <ol class="maxbox">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ol>
+</div>
+    </main>  
+      
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-info">
+              <h3>名侦探柯南<span>.</span></h3>
+              <p>
+                作者：青山刚昌 <br>
+                类型：推理漫画+动漫<br><br>
+                <strong>电话:</strong> 13655033576<br>
+                <strong>邮箱:</strong> sc202yc@leeds.ac.uk<br>
+              </p>
+              <div class="social-links mt-3">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-6 footer-links">
+            <h4>好玩的</h4>
+            <ul class="toggle-footer">
+              <li><i class="bx bx-chevron-right"></i> <a href="index_blog.html">主页</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#gallery" target="_self">精美壁纸</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#about" target="_self">拼图游戏</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#services" target="_self">音乐轮播</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="https://image.baidu.com/search/index?tn=baiduimage&ipn=r&ct=201326592&cl=2&lm=-1&st=-1&fm=result&fr=&sf=1&fmq=1633921990721_R&pv=&ic=0&nc=1&z=0&hd=0&latest=0&copyright=0&se=1&showtab=0&fb=0&width=&height=&face=0&istype=2&dyTabStr=&ie=utf-8&sid=&word=%E5%90%8D%E4%BE%A6%E6%8E%A2%E6%9F%AF%E5%8D%97%E9%AB%98%E6%B8%85%E5%9B%BE%E7%89%87&f=3&oq=%E5%90%8D%E4%BE%A6%E6%8E%A2%E6%9F%AF%E5%8D%97%E9%AB%98%E6%B8%85&rsp=1">更多资料</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>跳转到其他页面</h4>
+            <ul class="toggle-footer">
+              <li><i class="bx bx-chevron-right"></i> <a href="../Content/Plot and Character.html">剧情与角色介绍</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="../Content/Setting and Props.html">背景与道具设定</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="../Content/Wallpaper and Music.html">动画壁纸与音乐</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="../Content/Relevance and Evolution.html">作品关联与沿革</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="../Content/Comment and Production.html">网友点评与制作</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4>写点别的吧：</h4>
+            <p>即使是侦探也只是个普通的人，不会是全知全能的神仙。</p>
+            <form action="" method="post">
+              <input type="email" name="email"><input type="submit" value="提交">
+            </form>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+    
+    <div class="container">
+      <div class="copyright">
+        <strong><span>看到底啦就给个好评呗~</span></strong>
+      </div>
+      <div class="credits">
+        Designed by <a href="https://minerva.leeds.ac.uk/">Eason &nbsp; 陈奕俊</a>
+      </div>
+    </div>
+  </footer>
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- JS 导入 --><script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+      <script src="../static/codebase/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+
+  <script src="../static/js/purecounter.js"></script>
+  <script src="../static/codebase/aos/aos.js"></script>
+
+  <script src="../static/js/glightbox.js"></script>
+  <script src="../static/js/glightbox.min.js"></script>
+  <script src="../static/js/isotope.pkgd.min.js"></script>
+  <script src="../static/codebase/swiper/swiper-bundle.min.js"></script>
+  <!-- <script src="https://unpkg.com/swiper/swiper-bundle.js"> </script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"> </script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js.map"> </script> -->
+  <script src="../static/js/validate.js"></script>
+
+  <!-- 自己的 JS -->
+  <script src="../static/js/main.js"></script>
+{#    <script type="text/javascript" src="../static/js/index.js"></script>#}
+    <script src="../static/js/clock.js"></script>
+    <script src="../static/js/helang-clock.js"></script>
+    <script src="../static/js/model.js"></script>
+</body>
+
+</html>

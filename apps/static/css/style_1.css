@@ -1583,13 +1583,13 @@ section {
   z-index: -10;
 }
 .small{
-  background-image: url("../image/small.png");
+  background-image: url("../img/small.png");
   /*background-position: 0px 0px;背景位置 左右 上下*/
   animation: move 5s linear infinite;/*动画 动画名 动画时间 无限交替*/
   z-index: -10; 
 }
 .big{
-  background-image: url("../image/big.png");
+  background-image: url("../img/big.png");
   /*background-position: 0px 0px;背景位置 左右 上下*/
   animation: move 7s linear infinite;/*动画 动画名 动画时间 无限交替*/ 
   z-index: -10;
@@ -1797,7 +1797,7 @@ audio{
   position: absolute;
   overflow: hidden;
   border-radius:0;
-  background-image:url('../image/怪盗基德3.png');
+  background-image:url('../img/怪盗基德3.png');
   box-shadow:0 0px 6px rgba(255,255,255,0.6);
   cursor:pointer;
   overflow: hidden;

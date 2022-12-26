@@ -13,7 +13,7 @@ table_user_comment = db.Table("table_user_comment",
 
 table_user_role = db.Table("table_user_role",
                            db.Column("user_id", db.Integer, db.ForeignKey("users.id"), primary_key=True),
-                           db.Column("role_id", db.Integer, db.ForeignKey("role.id"), primary_key=True))
+                           db.Column("role_id", db.Integer, db.ForeignKey("roles.id"), primary_key=True))
 
 
 class User(UserMixin, db.Model):

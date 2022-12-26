@@ -9,6 +9,16 @@ app = create_app("development")
 manager = Manager(app)
 migrate = Migrate(app, db)
 
+@manager.command
+def tests():
+    """
+    Execute test cases for the Flask project
+    """
+    import unittest
+    # 发现所有的测试用例(TestCase)绑定成一个测试集合(TestSuite), TestLoader
+    tests = unittest.TestLoader().discover('tests')
+    # verbosity是测试结果的信息复杂度，有0、1、2 三个值
+    unittest.TextTestRunner(verbosity=2).run(tests)
 
 def shell_context():
     return dict(app=app, db=db, User=User, Role=Role)
